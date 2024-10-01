@@ -1,5 +1,5 @@
 from .gerencia import filtrar_dados, reply, enviar_resposta
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from os import environ
@@ -29,4 +29,3 @@ def boot(request):
             print(f'Status message: {res["entry"][0]["changes"][0]["value"]["statuses"][0]["status"]}')
             return HttpResponse(f'Status message: {res["entry"][0]["changes"][0]["value"]["statuses"][0]["status"]}')
         
-

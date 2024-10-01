@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from boot.gerencia import enviar_resposta
-from boot.models import Cliente, Mensagem
+from boot.models import Cliente
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib import messages
+
 # Create your views here.
 def login_user(request):
     if request.method == 'POST':
@@ -13,12 +14,13 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user:
-            login(request, user)
             messages.success(request, "loggin Succes!")
+            login(request, user)
             return redirect('inicio')
 
     return render(request, 'login.html')
 
+@login_required(login_url='login')
 def logout_user(request):
      logout(request)
      return redirect('login')
@@ -38,9 +40,10 @@ def inicio(request):
             list_mensagens.append(msg.mensagem)
         dict['mensagem'] = list_mensagens
         dict['ultima_mensagem'] = list_mensagens[-1][:20]
-        mensagens.append(dict)
+        mensagens.append(dict)   
     return render(request, 'inicio.html',  {'clientes': mensagens} )
-    
+
+@login_required(login_url='login')   
 def cadastro(request):
     if request.method == 'POST':
         nome = request.POST['nome']
@@ -61,6 +64,7 @@ def cadastro(request):
     else:
         return render(request, 'cadastro.html')
 
+@login_required(login_url='login')
 def listar_usuario(request):
     users = User.objects.all()
     if request.method == 'GET':
@@ -83,9 +87,11 @@ def listar_usuario(request):
         user.save()
         return render(request, 'listar_usuarios.html', {'usuarios': users})
 
+@login_required(login_url='login')
 def painel(request):
     return render(request, 'painel.html')
 
+@login_required(login_url='login')
 def alterar_senha(request):
     if request.method == 'POST':
         user = request.user
@@ -98,14 +104,17 @@ def alterar_senha(request):
     else:
         return render(request, 'alterar_senha.html')
 
+@login_required(login_url='login')
 def editar_usuario(request, id_user):
     user = User.objects.get(id=id_user)
     return render(request, 'editar_usuario.html', {'usuario': user})
 
+@login_required(login_url='login')
 def detalhes_usuario(request, id_user):
     user = User.objects.get(id=id_user)
     return render(request, 'detalhes_usuario.html', {'usuario': user})
 
+@login_required(login_url='login')
 def excluir_usuario(request, id_user):
     user = User.objects.get(id=id_user)
     user.delete()
@@ -120,3 +129,4 @@ def conversa(request, id_cliente):
     mensagens = cliente.mensagem_set.all()
     return render(request, 'conversa.html', {'cliente':cliente, 'mensagens':mensagens})
    
+

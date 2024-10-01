@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save
+from winotify import Notification, audio
+
 # Create your models here.
 
 class Cliente(models.Model):
@@ -22,6 +25,8 @@ class Mensagem(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     mensagem = models.TextField()
     remetente = models.CharField('cliente', max_length=72)
+    nome = models.CharField(max_length=72, blank=True)
+    notificacao = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Data de Criação')
 
     def __str__(self):
@@ -32,3 +37,11 @@ class Mensagem(models.Model):
         ordering = ['date_created']
         verbose_name = 'Mensagens'
 
+def Notificar(sender, instance, created, **kwargs):
+    if instance.remetente == 'cliente' and instance.notificacao == True:
+        notificacao = Notification(app_id="Projeto django", title=f"{instance.nome}", msg=instance, icon=r'C://Users/Michael Andrew/PycharmProjects/ProjetoEmDjango/main/static/imagens/favicon.ico')
+        notificacao.set_audio(audio.LoopingAlarm10, loop=True)
+        notificacao.add_actions(label='Responder', launch='http://127.0.0.1:8000/inicio')
+        notificacao.show()
+
+post_save.connect(Notificar, sender=Mensagem)

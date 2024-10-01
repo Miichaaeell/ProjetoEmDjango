@@ -19,14 +19,14 @@ def filtrar_dados(dados):
     else:
         fluxo = clientes.fluxo
     user = Cliente.objects.filter(telefone=cliente['telefone']).first()
-    msg = Mensagem(cliente=user, mensagem=cliente['msg'], remetente='cliente')
+    if user.fluxo == 'atendimento':
+        msg = Mensagem(cliente=user, mensagem=cliente['msg'], remetente='cliente', nome=user.nome, notificacao=True)
+    else:
+        msg = Mensagem(cliente=user, mensagem=cliente['msg'], remetente='cliente', nome=user.nome)
     msg.save()
-
-
     return cliente, novo, fluxo
 
 def atualizar_fluxo(telefone, fluxo):
-    print(telefone, fluxo)
     cliente = Cliente.objects.filter(telefone=telefone).first()
     cliente.fluxo = fluxo
     cliente.save()
@@ -39,7 +39,6 @@ def reply(usuario, novo, fluxo):
     print(f'Fluxo anterior: {fluxo}')
     if fluxo == 'atendimento' or 'atendimento' in usuario["msg"] or 'atendente' in usuario["msg"]:
         atualizar_fluxo(usuario['telefone'], 'atendimento')
-        print('atendimento')
     elif fluxo == 'inicial' and usuario["msg"] in 'bom dia, boa tarde, boa noite, ola, oi, dia, noite, tarde, bom, boa, tudo bem':
         return boas_vindas(usuario["nome"], novo)
     elif fluxo == 'inicial' and usuario['msg'] in 'serviços servico':

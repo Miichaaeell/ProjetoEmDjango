@@ -2,9 +2,9 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.login_user, name='login'),
+    path('login', views.login_user, name='login'),
     path('logout', views.logout_user, name='logout'),
-    path('inicio', views.inicio, name='inicio'),
+    path('', views.inicio, name='inicio'),
     path('cadastro', views.cadastro, name='cadastro'),
     path('painel', views.painel, name='painel'),
     path('listar_usuario', views.listar_usuario, name='listar_usuario'),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('detalhes_usuario/<int:id_user>', views.detalhes_usuario, name='detalhes_usuario'),
     path('excluir_usuario/<int:id_user>', views.excluir_usuario, name='excluir_usuario'),
     path('conversa/<int:id_cliente>', views.conversa, name='conversa'),
+
 
 ]
