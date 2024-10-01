@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+    {% block style %}
+    {% if user.is_staff == False %}
+    <script>
+        alert('Este usuário não tem permissão para acessar está pagina')
+    </script>
+    <meta http-equiv="refresh" content="0; url=inicio">
+    {% endif %}
+    <link rel="stylesheet" href="/static/css/cadastro.css">
+    {% endblock style %}
+    {% block title %}<title>Cadastro</title> {% endblock title %}
+    {% block page_name %} <h1>Cadastro</h1> {% endblock page_name %}
+    {% block container %}
+    <div>
+        <form action="{% url 'cadastro' %}" method="post" autocomplete="on"><h1>Cadastrar novo usuario</h1>
+                {%  csrf_token %}
+            <p>
+                <label for="nome">Nome:  </label>
+                <input type="text" name="nome" id="nome" required placeholder="Nome Completo" autocomplete="name" minlength="8" maxlength="128">
+            </p>
+            <p>
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" autocomplete="email", placeholder="seuemail@email.com" required>
+            </p>
+            <p>
+                <label for="username">Usuario: </label>
+                <input type="tel" name="username" id="username" required autocomplete="username"  placeholder="Usuario de acesso" minlength="3" maxlength="10">
+                <br><label id="erro">{{erro}}</label>
+            </br>
+            <p>
+                <label for="password">Senha: </label>
+                <input type="password" name="password" id="password" placeholder="******", required minlength="8">
+            </p>
+            <p>
+                <label for="previlegio">Previlégio: </label>
+                <select name="previlegio" id="previlegio">
+                    <option value="Administrador">Administrador</option>
+                    <option value="User" selected>User</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Cadastrar">
+            </p>
+
+
+            
+        </form>
+    </div>
+    {% endblock container %}

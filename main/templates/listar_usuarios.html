@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+    {% block style %}
+    {% if user.is_staff == False %}
+    <script>
+        alert('Este usuário não tem permissão para acessar está pagina')
+    </script>
+    <meta http-equiv="refresh" content="0; url=inicio">
+    {% endif %}
+    <link rel="stylesheet" href="/static/css/listar_usuarios.css">
+    {% endblock style %}
+    {% block title %}<title>Usuarios Cadastrados</title> {% endblock title%}
+    {% block page_name %}<h1>Lista de Usuarios</h1>{% endblock page_name %}
+    {% block container %}
+    <main>
+        <section id="usuarios">
+            <table>
+                <thead>
+                    <th colspan="3">Usuarios Cadastrados</th>
+                    <tr>
+                        <th scope="colgroup">Nome</th>
+                        <th scope="colgroup">Usuario</th>
+                        <th scope="colgroup">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.first_name}}</td>
+                <td>{{usuario.username}}</td>
+                <td class="botao">
+                    <input type="button" value="Detalhes" class="Detalhes" onclick="detalhes('{{usuario.id}}')">
+                    <input type="button" value="Editar" class="editar" onclick="editar('{{usuario.id}}')">
+                    <input type="button" value="Excluir" class="Excluir" onclick="excluir('{{usuario.id}}')">
+                </td>
+            </tr>
+            {% endfor %}
+
+                </tbody>
+        </table>
+        </section>
+    </main>
+
+
+    <script>
+        function editar(user){
+            window.location.href = `editar_usuario/${user}`
+        }
+
+        function excluir(user){
+            confirmar = window.confirm(`Deseja realmente excluir o usuário ${user}`)
+            window.location.href = confirmar == true ? `excluir_usuario/${user}` : ''
+        }
+        function detalhes(user){
+            window.location.href = `detalhes_usuario/${user}`
+        }
+    </script>
+    {% endblock container %}

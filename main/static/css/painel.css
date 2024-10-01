@@ -1,0 +1,59 @@
+@charset "UTF-8";
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 5px;
+}
+menu{
+    padding: 10px;
+}
+header  a{
+    color: black;
+    text-decoration: none;
+    padding: 4px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.452);
+}
+main{
+    display: flex;
+    height: 500px;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+hr.horizontal{
+    width: 100%;
+    box-sizing: border-box;
+    border-color: black;
+}
+#ações{
+    padding: 5px;    
+}
+#dados_cadastrais{
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+}
+table, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 385px;
+    height: 40px;
+}
+#conversas  h1 {
+    text-align: center;
+}
+input{
+    margin: 5px 0px 5px 10px;
+    padding: 5px;
+    cursor: pointer;
+    width: 130px;
+}

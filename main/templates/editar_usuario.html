@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+    {% block style %}
+    {% if user.is_staff == False %}
+    <script>
+        alert('Este usuário não tem permissão para acessar está pagina')
+    </script>
+    <meta http-equiv="refresh" content="0; url=inicio">
+    {% endif %}
+    <link rel="stylesheet" href="/static/css/editar_usuario.css">
+    {% endblock style %}
+    {% block title %}<title>Editar Usuario</title> {% endblock title %}
+    {% block page_name %}<h1>Editar Usuario</h1> {% endblock page_name %}
+    {% block container %}
+    <main>
+        <form action="{% url 'listar_usuario' %}" method="post"> {% csrf_token %}
+            <h1>Editar {{usuario.first_name}}</h1>
+            <input type="text" name="id" id="id" value="{{usuario.id}}" hidden >
+            <p>
+                <label for="nome">Nome: </label>
+                <input type="text" name="nome" id="nome" value="{{usuario.first_name}}">
+            </p>
+            <p>
+                <label for="username">Usuario: </label>
+                <input type="text" name="username" id="username" value="{{usuario.username}}">
+            </p>
+            <p>
+                <label for="email">E-mail: </label>
+                <input type="email" name="email" id="email" value="{{usuario.email}}" size="27">
+            </p>
+            <p>
+                <label for="password">Senha: </label>
+                <input type="password" name="password" id="password" value="{{usuario.password}}">
+            </p>
+            <p>
+                <label for="previlegio">Previlegio: </label>
+                <select name="previlegio" id="previlegio">
+                    <optgroup label="Selecionado">
+                        {% if usuario.is_staff == True %}
+                            <option value="{{Administrador}}">Administrador</option>
+                        {% else %}
+                            <option value="{{User}}">User</option>
+                        {% endif %}
+                    </optgroup>
+                    <optgroup label="Previlegios">
+                        <option value="Administrador">Administrador</option>
+                        <option value="User">User</option>
+                    </optgroup>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Salvar">
+            </p>
+        </form>
+    </main>
+    {% endblock container%}

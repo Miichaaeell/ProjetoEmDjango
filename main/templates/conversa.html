@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/conversa.css' %}">
+    <title>Conversa</title>
+</head>
+<body >
+    <div id="conversa">
+        <h1>{{cliente.nome}}</h1>
+        <div id="mensagens">
+            {% for mensagem in mensagens %}
+                {% if mensagem.remetente == 'cliente' %}
+                    <div id="cliente">
+                        <output class="cliente">
+                            {{mensagem}} <br>
+                            {{mensagem.date_created}}
+                        </output>
+                    </div>
+                {% else %}
+                    <div id="empresa">
+                        <output class="empresa">
+                            {{mensagem}} <br>
+                            {{mensagem.date_created }}
+                        </output>
+                    </div>
+                {% endif %}
+            {% endfor %}
+    </div>
+            <form action="#" method="post"> {% csrf_token %}
+                <p id="send_message">
+                    <input type="text" name="mensagem" id="mensagem">
+                    <input type="submit" value="Enviar">
+                </p>
+            </form>
+    </div>
+
+</body>
+</html>

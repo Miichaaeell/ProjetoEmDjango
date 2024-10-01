@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+{% endblock style %}
+
+{% block container %}
+<main>
+    <section id="conversas">
+        <h1>Conversas</h1>
+        {% for cliente in clientes %}
+        {% if cliente.fluxo == 'atendimento' %}
+            <p>
+                <a href="conversa/{{cliente.id}}" target="conversa">
+                    <strong>{{ cliente.nome }}</strong> <br>
+                    {{cliente.ultima_mensagem}}
+                </a>
+            </p>
+            {% endif %}
+        {% endfor %}
+    </section>
+    <hr>
+    <div id="conversa_div">
+        <iframe name="conversa" id="conversa" src="static/imagens/live-chat.jpg" ></iframe>
+    </div>   
+</main>
+
+
+{% endblock container %}

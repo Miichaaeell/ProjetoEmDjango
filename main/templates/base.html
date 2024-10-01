@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/imagens/whats_ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/geral.css' %}">
+    {% block style %}{% endblock style %}
+    {% block title %}<title>Projeto em Django</title>{% endblock title %}
+</head>
+
+<body>
+    {% block navbar %}
+    <header>
+    {% block page_name %}<h1>Chat</h1> {% endblock page_name %}
+        {% if user.is_staff == True %}
+        <menu>
+            <a href="{% url 'inicio' %}">Início</a>
+            <a href="{% url 'cadastro' %}">Cadastrar novo usuario</a>
+            <a href="{% url 'listar_usuario' %}">Listar usuarios</a>
+            <a href="{% url 'painel' %}">{{user}}</a>
+            <a href="{% url 'logout' %}"> Sair</a>
+        </menu>
+        {% else %}
+        <menu>
+            <a href="{% url 'inicio' %}">Início</a>
+            <a href="{% url 'painel' %}">{{user}}</a>
+            <a href="{% url 'logout' %}"> Sair</a>
+        </menu>
+        {% endif %}
+
+
+    </header>
+    <hr class="horizontal">
+    {% endblock navbar %}
+    <div id="content">
+        {% block container %} {% endblock container %}
+    </div>
+    <hr class="horizontal">
+    <footer>  &#169Copyright, Desenvolvido por <strong>Michael Andrew</strong> </footer>
+</body>
+</html>

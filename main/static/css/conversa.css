@@ -1,0 +1,68 @@
+@charset "utf-8";
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+#conversa{
+    height: 100%;
+    display: flex;
+    flex-flow:column nowrap;
+    text-align: center;
+    justify-content: space-between;
+    background-color: lightgray;
+}
+#conversa > h1{
+    font-weight: bolder;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+}
+#mensagens{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 90%;
+    word-break: break-all;
+    overflow: auto;
+}
+input[type='text']{
+    width: 90%;
+}
+input[type='submit']{
+    width:9%;
+    cursor: pointer;
+}
+input[type='submit']:hover{
+    background-color: gray;
+    transition: 0.2s;
+}
+input{
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37);
+}
+#mensagens > div{
+    margin: 5px;
+}
+output{
+    border: 1px solid black;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 5px;
+}
+.cliente{
+    background-color: rgba(70, 70, 70, 0.329);
+
+}
+.empresa{
+    background-color: white;
+}
+#cliente{
+    text-align: left;
+}
+#empresa{
+    text-align: right;
+}

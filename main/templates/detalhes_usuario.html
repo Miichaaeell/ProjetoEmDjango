@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+    {% block style %}
+    {% if user.is_staff == False %}
+    <script>
+        alert('Este usuário não tem permissão para acessar está pagina')
+    </script>
+    <meta http-equiv="refresh" content="0; url=inicio">
+    {% endif %}
+    <link rel="stylesheet" href="/static/css/listar_usuarios.css">
+    {% endblock style%}
+    {% block title %}<title>Detalhes usuário</title> {% endblock title%}
+    {% block page_name %}<h1>Detalhes {{usuario.first_name}}</h1> {% endblock page_name %}
+    {% block container %}
+    <main>
+        <table>
+            <thead><th colspan="2">Detalhes</th></thead>
+            <tbody>
+                <tr>
+                    <th>Nome:</th>
+                    <td>{{usuario.first_name}}</td>
+                </tr>
+                <tr>
+                    <th>E-mail:</th>
+                    <td>{{usuario.email}}</td>
+                </tr>
+                <tr>
+                    <th>Usuário: </th>
+                    <td>{{usuario.username}}</td>
+                </tr>
+                <tr>
+                    <th>Previlégio: </th>
+                    <td>
+                    {% if usuario.is_staff == True %}
+                            Administrador
+                    {% else %}
+                            User
+                    {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    {% endblock container %}

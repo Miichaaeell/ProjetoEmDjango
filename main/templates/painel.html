@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+    {% block style %}<link rel="stylesheet" href="/static/css/painel.css">{% endblock style%}
+    {% block title %}<title>Painel</title>{% endblock title %}
+    {% block page_name %}<h1>Painel</h1>{% endblock page_name %}
+    {% block container %}
+    <main>
+        <section id="ações">
+            <p><input type="button" value="Alterar Senha" onclick="alterar()"></p>
+        </section>
+        <section id="dados_cadastrais">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Dados Cadastrais</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Nome:</th>
+                        <td>{{user.first_name}}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail:</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Usuario:</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>Previlégio:</th>
+                        {% if user.is_staff == True %}
+                            <td>Administrador</td>
+                        {% else %}
+                            <td>User</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </section>
+    </main>
+    <script>
+        function alterar(){
+            window.location.href = 'alterar_senha'
+        }
+    </script>    
+{% endblock container %}

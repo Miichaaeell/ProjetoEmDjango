@@ -1,0 +1,32 @@
+@charset "UTF-8";
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 5px;
+}
+menu{
+    padding: 10px;
+}
+header  a{
+    color: black;
+    text-decoration: none;
+    padding: 4px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.452);
+}
+
+hr.horizontal{
+    width: 100%;
+    box-sizing: border-box;
+    border-color: black;
+}
+footer{
+    text-align: center;
+    margin-top: 3px;
+}
