@@ -30,3 +30,15 @@ footer{
     text-align: center;
     margin-top: 3px;
 }
+#sino{
+    transform: translateY(5px);
+}
+#sino:hover{
+    background-color: lightgray;
+    color: white;
+}
+.material-symbols-rounded{
+    font-weight: bolder;
+    display: inline-flex;
+    transform: translateY(5px);
+}

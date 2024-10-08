@@ -129,4 +129,15 @@ def conversa(request, id_cliente):
     mensagens = cliente.mensagem_set.all()
     return render(request, 'conversa.html', {'cliente':cliente, 'mensagens':mensagens})
    
-
+@xframe_options_exempt
+def chat(request):
+    usuarios = []
+    users = Cliente.objects.all()
+    for usuario in users:
+        ultima_mensagem = usuario.mensagem_set.all().last()
+        dict = {}
+        dict['usuario'] = usuario
+        dict['mensagem'] = ultima_mensagem
+        print(ultima_mensagem)
+        usuarios.append(dict)  
+    return render(request, 'chat.html', {'usuarios': usuarios})

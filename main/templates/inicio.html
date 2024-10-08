@@ -9,16 +9,7 @@
 <main>
     <section id="conversas">
         <h1>Conversas</h1>
-        {% for cliente in clientes %}
-        {% if cliente.fluxo == 'atendimento' %}
-            <p>
-                <a href="conversa/{{cliente.id}}" target="conversa">
-                    <strong>{{ cliente.nome }}</strong> <br>
-                    {{cliente.ultima_mensagem}}
-                </a>
-            </p>
-            {% endif %}
-        {% endfor %}
+        <iframe src="{% url 'chat' %}" name='chat' id="chat" height="100%"></iframe>
     </section>
     <hr>
     <div id="conversa_div">

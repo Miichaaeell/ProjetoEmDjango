@@ -21,10 +21,7 @@
             <input type="password" class="campo" name="password" id="password" placeholder="******">
             <span class="material-symbols-sharp" id="olho" onclick="mostrar()" style="display: inline-block;" >
                 visibility
-            </span> 
-            <span class="material-symbols-sharp" id="olho1" onclick="mostrar()" style="display: none;" >
-                visibility_off
-            </span>            
+            </span>         
         </p>
         <p><output>{{erro}}</output></p>
         <p>
@@ -43,10 +40,9 @@
         function mostrar() {
             let senha = document.querySelector('#password')
             let olho = document.querySelector('#olho')
-            let olho1 = document.querySelector('#olho1')
             senha.type = senha.type == 'text' ? 'password' : 'text'
-            olho.style = senha.type == 'text' ? 'display: none' : 'display:  inline-block'
-            olho1.style = senha.type == 'text' ? 'display: inline-block' : 'display: none'
+            olho.innerHTML = senha.type == 'text' ? 'visibility_off' : 'visibility'
+           
         }
     </script>
 </body>

@@ -8,19 +8,22 @@ main{
     text-align: center;
     margin-top: 10px;
 }
-#conversas > p{
+#chatt > p{
     border: 1px solid black;
     margin: 5px;
     max-height: 40px;
     border-radius: 5px;
+    padding: 6px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.459);
+    text-align: center;
+    width: 260px;
     
 }
-#conversas > p:hover{
+#chatt > p:hover{
     background-color: rgba(128, 128, 128, 0.39);
     cursor: pointer;
 }
-#conversas a {
+#chatt a {
     text-decoration: none;
     color: black;
     max-height: 40px;
@@ -37,4 +40,10 @@ main{
     width: 100%;
     height: 90vh;
 
+}
+#chatt{
+    width: 200px;
+}
+#chat{
+    border: none;
 }

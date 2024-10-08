@@ -13,6 +13,6 @@ urlpatterns = [
     path('detalhes_usuario/<int:id_user>', views.detalhes_usuario, name='detalhes_usuario'),
     path('excluir_usuario/<int:id_user>', views.excluir_usuario, name='excluir_usuario'),
     path('conversa/<int:id_cliente>', views.conversa, name='conversa'),
-
+    path('chat', views.chat, name='chat'),
 
 ]
