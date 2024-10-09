@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="{% static 'css/conversa.css' %}">
     <title>Conversa</title>
 </head>
-<body >
+<body onload="rolar()">
     <div id="conversa">
-        <h1>{{cliente.nome}}</h1>
+        <div id="titulo">
+            <h2>{{cliente.nome}}</h2>
+            <h4>{{cliente.telefone}}</h4>
+        </div>
         <div id="mensagens">
             {% for mensagem in mensagens %}
                 {% if mensagem.remetente == 'cliente' %}
@@ -36,6 +39,7 @@
                 </p>
             </form>
     </div>
+    <script src="{% static 'js/conversa.js' %}"></script>
 
 </body>
 </html>

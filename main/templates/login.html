@@ -19,7 +19,7 @@
         <p>
             <label for="password">Senha:</label>
             <input type="password" class="campo" name="password" id="password" placeholder="******">
-            <span class="material-symbols-sharp" id="olho" onclick="mostrar()" style="display: inline-block;" >
+            <span class="material-symbols-sharp" id="olho" style="display: inline-block;" >
                 visibility
             </span>         
         </p>
@@ -36,14 +36,6 @@
     {% endfor%}
     {% endif %}
 
-    <script>
-        function mostrar() {
-            let senha = document.querySelector('#password')
-            let olho = document.querySelector('#olho')
-            senha.type = senha.type == 'text' ? 'password' : 'text'
-            olho.innerHTML = senha.type == 'text' ? 'visibility_off' : 'visibility'
-           
-        }
-    </script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>

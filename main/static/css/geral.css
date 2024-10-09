@@ -37,8 +37,3 @@ footer{
     background-color: lightgray;
     color: white;
 }
-.material-symbols-rounded{
-    font-weight: bolder;
-    display: inline-flex;
-    transform: translateY(5px);
-}

@@ -8,11 +8,10 @@
 {% block container %}
 <main>
     <section id="conversas">
-        <h1>Conversas</h1>
-        <iframe src="{% url 'chat' %}" name='chat' id="chat" height="100%"></iframe>
+        <iframe src="{% url 'lista_chat' %}" name='lista_chat' id="lista_chat"> </iframe>
     </section>
     <hr>
-    <div id="conversa_div">
+    <div id="janela_conversa">
         <iframe name="conversa" id="conversa" src="static/imagens/live-chat.jpg" ></iframe>
     </div>   
 </main>

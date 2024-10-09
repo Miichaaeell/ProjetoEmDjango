@@ -27,21 +27,7 @@ def logout_user(request):
 
 @login_required(login_url='login')
 def inicio(request):
-    mensagens = []
-    users = Cliente.objects.all()
-    for usuario in users:
-        dict = {}
-        dict['id'] = usuario.id
-        dict["nome"] = usuario.nome
-        dict['fluxo'] = usuario.fluxo
-        todas_mensagens = usuario.mensagem_set.all()
-        list_mensagens = []
-        for msg in todas_mensagens:
-            list_mensagens.append(msg.mensagem)
-        dict['mensagem'] = list_mensagens
-        dict['ultima_mensagem'] = list_mensagens[-1][:20]
-        mensagens.append(dict)   
-    return render(request, 'inicio.html',  {'clientes': mensagens} )
+    return render(request, 'inicio.html' )
 
 @login_required(login_url='login')   
 def cadastro(request):
@@ -130,7 +116,7 @@ def conversa(request, id_cliente):
     return render(request, 'conversa.html', {'cliente':cliente, 'mensagens':mensagens})
    
 @xframe_options_exempt
-def chat(request):
+def lista_chat(request):
     usuarios = []
     users = Cliente.objects.all()
     for usuario in users:
@@ -138,6 +124,5 @@ def chat(request):
         dict = {}
         dict['usuario'] = usuario
         dict['mensagem'] = ultima_mensagem
-        print(ultima_mensagem)
         usuarios.append(dict)  
-    return render(request, 'chat.html', {'usuarios': usuarios})
+    return render(request, 'lista_chat.html', {'usuarios': usuarios})
