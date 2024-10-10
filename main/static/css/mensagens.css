@@ -1,0 +1,35 @@
+@charset "utf-8";
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#mensagens{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+    word-break: break-all;
+    overflow: auto;
+    background-color: lightgray;
+}
+#mensagens > div{
+    margin: 5px;
+}
+output{
+    border: 1px solid black;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 5px;
+}
+.cliente{
+    background-color: rgba(70, 70, 70, 0.329);
+
+}
+.empresa{
+    background-color: white;
+}
+#cliente{
+    text-align: left;
+}
+#empresa{
+    text-align: right;
+}

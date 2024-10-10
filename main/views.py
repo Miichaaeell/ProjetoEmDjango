@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from boot.gerencia import enviar_resposta
-from boot.models import Cliente
+from boot.models import Cliente, Mensagem
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib import messages
 
@@ -126,3 +126,8 @@ def lista_chat(request):
         dict['mensagem'] = ultima_mensagem
         usuarios.append(dict)  
     return render(request, 'lista_chat.html', {'usuarios': usuarios})
+
+@xframe_options_exempt
+def mensagens(request, id_cliente):
+    mensagens = Mensagem.objects.filter(cliente = id_cliente).all()
+    return render(request, 'mensagens.html', {'mensagens': mensagens})
