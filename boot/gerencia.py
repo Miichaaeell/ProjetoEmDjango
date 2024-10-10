@@ -31,26 +31,24 @@ def atualizar_fluxo(telefone, fluxo):
     cliente.fluxo = fluxo
     cliente.save()
 
-def atendente(nome, telefone, msg):
-    print(f'Nome: {nome} \nTelefone: {telefone}\nMensagem: {msg}')
 
 def reply(usuario, novo, fluxo):
     print(f'Cliente: {usuario["nome"]} \nMensagem: {usuario["msg"]}')
     print(f'Fluxo anterior: {fluxo}')
-    if fluxo == 'atendimento' or 'atendimento' in usuario["msg"] or 'atendente' in usuario["msg"]:
+    if fluxo.lower() == 'atendimento' or 'atendimento' in usuario["msg"].lower() or 'atendente' in usuario["msg"].lower():
         atualizar_fluxo(usuario['telefone'], 'atendimento')
-    elif fluxo == 'inicial' and usuario["msg"] in 'bom dia, boa tarde, boa noite, ola, oi, dia, noite, tarde, bom, boa, tudo bem':
+    elif fluxo.lower() == 'inicial' and usuario["msg"].lower() in ['bom dia', 'boa tarde', 'boa noite', 'ola', 'oi', 'tudo bem?']:
         return boas_vindas(usuario["nome"], novo)
-    elif fluxo == 'inicial' and usuario['msg'] in 'serviços servico':
+    elif fluxo.lower() == 'inicial' and usuario['msg'].lower() in ['serviços', 'servico']:
         atualizar_fluxo(usuario['telefone'], 'Informações')
         return servicos(usuario['nome'])
-    elif fluxo == 'Informações' or usuario['msg'] in 'orçamento , orcamento':
+    elif fluxo.lower() == 'informações' or usuario['msg'].lower() in ['orçamento' , 'orcamento']:
         atualizar_fluxo(usuario['telefone'], 'Cadastro E-mail')
         return cadastro_email(usuario['nome'])
-    elif fluxo == 'Cadastro E-mail':
+    elif fluxo.lower() == 'cadastro e-mail':
         atualizar_fluxo(usuario['telefone'], 'Finalizando Orçamento')
         return orcamento(nome=usuario['nome'], email=usuario['msg'], telefone=usuario['telefone'])
-    elif fluxo == 'Finalizando Orçamento':
+    elif fluxo.lower() == 'finalizando orçamento':
         atualizar_fluxo(usuario['telefone'], 'inicial')
         return despedida(usuario['nome'], usuario['telefone'], usuario['msg'])
     else:
