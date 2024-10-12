@@ -15,5 +15,7 @@ urlpatterns = [
     path('conversa/<int:id_cliente>', views.conversa, name='conversa'),
     path('chat', views.lista_chat, name='lista_chat'),
     path('mensagens/<int:id_cliente>', views.mensagens, name='mensagens'),
+    path('teste', views.teste, name='teste'),
+    
 
 ]

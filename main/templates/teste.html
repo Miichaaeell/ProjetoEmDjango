@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Hellow World</h1>
+    <div id="chat">
+    </div>
+    <form id="form">
+        <input type="text" name="message" id="message">
+    </form>
+    
+<script>
+let url = `ws://${window.location.host}/ws/chat-socket/`
+const chatSocket = new WebSocket(url)
+const chat = document.getElementById('chat')
+const form = document.getElementById('form')
+chatSocket.onmessage = (e) => {
+    let data = JSON.parse(e.data)
+    if (data.type === 'new_message'){
+        console.log('message', data.message)
+        let msg = document.createElement('output')
+        msg.innerHTML = `${data.message} <br>`
+        chat.appendChild(msg)
+    }
+    console.log(data)
+}
+form.addEventListener('submit', (event) =>{
+    event.preventDefault()
+    let message = event.target.message.value
+    chatSocket.send(JSON.stringify({
+        'message':message,
+        'id':'1'
+    }))
+    form.reset()
+})
+
+</script>
+</body>
+</html>

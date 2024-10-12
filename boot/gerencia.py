@@ -2,7 +2,7 @@ from os import environ
 from requests import request
 from boot.respostas import *
 from .models import Cliente, Mensagem
-#from atendimento.atendimento import atendente
+
 def filtrar_dados(dados):
     novo = False
     fluxo = ''

@@ -131,3 +131,6 @@ def lista_chat(request):
 def mensagens(request, id_cliente):
     mensagens = Mensagem.objects.filter(cliente = id_cliente).all()
     return render(request, 'mensagens.html', {'mensagens': mensagens})
+
+def teste(request):
+    return render(request, 'teste.html')

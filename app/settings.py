@@ -29,14 +29,16 @@ SECRET_KEY = environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '41d5-191-54-216-104.ngrok-free.app',
-    '127.0.0.1'
+    'b0bf-177-106-135-51.ngrok-free.app',
+    '127.0.0.1',
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+
     'main',
     'boot',
     'django.contrib.admin',
@@ -47,6 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 ]
+ASGI_APPLICATION = 'app.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+#WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
