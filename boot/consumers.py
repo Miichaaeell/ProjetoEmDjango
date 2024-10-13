@@ -17,23 +17,43 @@ class NotificationConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         message_json = json.loads(text_data)
-    
+        if message_json['type'] == 'new_message':
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name,
+                {
+                    'type':'new_message',
+                    'message': message_json['message'],
+                    'id': message_json['id']
 
-        async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name,
-            {
-                'type':'new_message',
-                'message': message_json['message'],
-                'id': message_json['id']
+                }
+            )
+        elif message_json['type'] == 'reply_message':
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name,
+                {
+                    'type':'reply_message',
+                    'message': message_json['message'],
+                    'id': message_json['id']
 
-            }
-        )
-    def new_message(self, event):
-        
+                }
+            )
+
+    def new_message(self, event):        
         self.send(text_data=json.dumps({
             'type':'new_message',
             'message': event['message'],
             'id': event['id']
             })
         )
+    
+    def reply_message(self, event):
+        self.send(text_data=json.dumps({
+            'type':'reply_message',
+            'message':event['message'],
+            'id': event['id']
+            })
+        )
+
+    
+
        

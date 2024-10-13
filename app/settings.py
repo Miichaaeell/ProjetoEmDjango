@@ -29,7 +29,7 @@ SECRET_KEY = environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'b0bf-177-106-135-51.ngrok-free.app',
+    'eec5-191-54-216-53.ngrok-free.app',
     '127.0.0.1',
 ]
 

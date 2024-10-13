@@ -10,16 +10,18 @@
 <body>
     <div id="conversa">
         <div id="titulo">
+            <h1 hidden id="id_client">{{cliente.id}}</h1>
             <h2>{{cliente.nome}}</h2>
             <h4>{{cliente.telefone}}</h4>
         </div>
         <iframe src="/mensagens/{{cliente.id}}"></iframe>
-        <form action="#" method="post"> {% csrf_token %}
+        <form action="#" method="post" id="form"> {% csrf_token %}
             <p id="send_message">
                 <input type="text" name="mensagem" id="mensagem">
                 <input type="submit" value="Enviar">
             </p>
         </form>
     </div>
+    <script src="{% static 'js/conversa.js' %}"></script>
 </body>
 </html>

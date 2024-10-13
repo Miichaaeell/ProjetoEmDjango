@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
 from winotify import Notification, audio
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+import json
 
 # Create your models here.
 
@@ -43,5 +46,17 @@ def Notificar(sender, instance, created, **kwargs):
         notificacao.set_audio(audio.LoopingAlarm10, loop=True)
         notificacao.add_actions(label='Responder', launch='http://127.0.0.1:8000/inicio')
         notificacao.show()
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'Atendimento',
+            {
+                "type": "new_message",
+                "message": instance.mensagem,
+                "id": instance.cliente.id
+
+            }
+        )
+        
+        
 
 post_save.connect(Notificar, sender=Mensagem)

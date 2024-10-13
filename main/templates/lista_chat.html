@@ -15,7 +15,7 @@
         {% if user.usuario.fluxo == 'atendimento' %}
                 <a href="conversa/{{user.usuario.id}}" target="conversa" class="conversas" id="{{user.usuario.id}}" onclick="abrir('{{user.usuario.id}}')">
                     <span class="nome"><strong> {{ user.usuario.nome }} </strong></span>
-                    <span class="mensagem" id="mensagem"> {{user.mensagem}} </span>
+                    <span class="mensagem" id="mensagem_{{user.usuario.id}}"> {{user.mensagem}} </span>
                 </a>
             {% endif %}
         {% endfor %}

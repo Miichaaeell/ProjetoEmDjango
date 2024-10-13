@@ -5,19 +5,18 @@ chatSocket.onmessage = (event) => {
     if (data.type === 'new_message'){
         let conversa = document.getElementById(`${data.id}`)
         conversa.style.backgroundImage = "linear-gradient(to right, red, orange)"
-        let msg = document.getElementById('mensagem')
+        let msg = document.getElementById(`mensagem_${data.id}`)
         msg.innerHTML = data.message 
+    }
+    else if (data.type === 'reply_message'){
+        let msg = document.getElementById(`mensagem_${data.id}`)
+        msg.innerHTML = data.message
+        let conversa = document.getElementById(`${data.id}`)
+        conversa.style.backgroundImage = 'none'
     }
     
 }
 
-
-function receber_msg(id){
-    var conversa = document.getElementById(`${id}`)
-    conversa.style.backgroundImage = "linear-gradient(to right, red, orange)"
-    var msg = document.getElementById('mensagem')
-    msg.innerHTML = 'Teste'
-}
 function abrir(id){
     var conversa = document.getElementById(`${id}`)
     conversa.style.backgroundImage = 'none'
