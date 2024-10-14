@@ -18,7 +18,7 @@
     {% block page_name %}<h1>Chat</h1> {% endblock page_name %}
         {% if user.is_staff == True %}
         <menu>
-            <a href="#" id='sino'><i class="bi bi-bell-fill"></i></a>
+            <a href="#" id='sino' onclick="clicou()"><i class="bi bi-bell-fill"></i></a>
             <a href="{% url 'inicio' %}">Início</a>
             <a href="{% url 'cadastro' %}">Cadastrar novo usuario</a>
             <a href="{% url 'listar_usuario' %}">Listar usuarios</a>
@@ -42,5 +42,8 @@
     </div>
     <hr class="horizontal">
     <footer>  &#169Copyright, Desenvolvido por <strong>Michael Andrew</strong> </footer>
+    {% block script %}
+    <script src="{% static 'js/base.js' %}"></script>
+    {% endblock script %}
 </body>
 </html>

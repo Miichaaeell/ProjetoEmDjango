@@ -1,9 +1,5 @@
 const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat-socket/`)
 Notification.requestPermission()
-const song = ''
-song.src = `/sound/notification.mp3`
-const ico = ''
-ico.src = `/image/whats_ico.ico`
 chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
     console.log(data)
@@ -13,7 +9,7 @@ chatSocket.onmessage = (event) => {
         let msg = document.getElementById(`mensagem_${data.id}`)
         msg.innerHTML = data.message
         console.log(data)
-        notify(title="New Message", body=data.message)
+
 
     }
     else if (data.type === 'reply_message'){
@@ -24,15 +20,6 @@ chatSocket.onmessage = (event) => {
     }
     
 }
-function notify(title, body){
-    new Notification(title,{
-        body: body,
-        icon: ico
-})
-    const audio = new Audio(song)
-    audio.play()
-}
-
 function abrir(id){
     var conversa = document.getElementById(`${id}`)
     conversa.style.backgroundImage = 'none'
