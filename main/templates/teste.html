@@ -34,7 +34,9 @@ form.addEventListener('submit', (event) =>{
     let message = event.target.message.value
     chatSocket.send(JSON.stringify({
         'message':message,
-        'id':'1'
+        'id':'1',
+        'type':'new_message',
+        'text':'Michael',
     }))
     form.reset()
 })
