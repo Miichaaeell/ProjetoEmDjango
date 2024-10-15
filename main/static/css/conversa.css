@@ -17,11 +17,18 @@ body{
 
 }
 #titulo{
-background-color: white;
-border-radius: 10px;
-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.507);
-border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.507);
+    border: 1px solid black;
 
+}
+#encerrar{
+    text-decoration: none;
+    color: black;
 }
 input[type='text']{
     width: 90%;

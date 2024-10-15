@@ -24,7 +24,7 @@ chatSocket.onmessage = (e) => {
     if (data.type === 'new_message'){
         console.log('message', data.message)
         let msg = document.createElement('output')
-        msg.innerHTML = `${data.message} <br>`
+        msg.innerHTML = `${data.message.body} <br>`
         chat.appendChild(msg)
     }
     console.log(data)
@@ -33,10 +33,11 @@ form.addEventListener('submit', (event) =>{
     event.preventDefault()
     let message = event.target.message.value
     chatSocket.send(JSON.stringify({
-        'message':message,
+        'message':{
+            'body':message,
+            'name':'Michael'},
         'id':'1',
         'type':'new_message',
-        'text':'Michael',
     }))
     form.reset()
 })

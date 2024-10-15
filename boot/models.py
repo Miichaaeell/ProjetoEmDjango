@@ -46,12 +46,15 @@ def Notificar(sender, instance, created, **kwargs):
         notificacao.set_audio(audio.LoopingAlarm10, loop=True)
         notificacao.add_actions(label='Responder', launch='http://127.0.0.1:8000/inicio')
         notificacao.show()
+        client = Cliente.objects.filter(id=instance.cliente.id).first()
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             'Atendimento',
             {
                 "type": "new_message",
-                "message": instance.mensagem,
+                "message": {
+                    'body':instance.mensagem,
+                    'name': client.nome},
                 "id": instance.cliente.id
 
             }

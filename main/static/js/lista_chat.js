@@ -7,7 +7,7 @@ chatSocket.onmessage = (event) => {
         let conversa = document.getElementById(`${data.id}`)
         conversa.style.backgroundImage = "linear-gradient(to right, red, orange)"
         let msg = document.getElementById(`mensagem_${data.id}`)
-        msg.innerHTML = data.message
+        msg.innerHTML = data.message['body']
         console.log(data)
 
 

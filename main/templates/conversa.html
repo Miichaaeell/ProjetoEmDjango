@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/conversa.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Conversa</title>
 </head>
 <body>
     <div id="conversa">
         <div id="titulo">
             <h1 hidden id="id_client">{{cliente.id}}</h1>
-            <h2>{{cliente.nome}}</h2>
             <h4>{{cliente.telefone}}</h4>
+            <h2>{{cliente.nome}}</h2>
+            <h2><a href="#"><i class="bi bi-archive" id="encerrar" onclick="fechar()"></i></a></h2>
         </div>
         <iframe src="/mensagens/{{cliente.id}}"></iframe>
         <form action="#" method="post" id="form"> {% csrf_token %}
