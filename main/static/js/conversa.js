@@ -18,7 +18,3 @@ form.addEventListener('submit', (event)=>{
         'id': id_client
     }))
 })
-function fechar(){
-    alert('fechar')
-    
-}

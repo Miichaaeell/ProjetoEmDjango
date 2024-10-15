@@ -6,7 +6,7 @@
     font-size: 1.04em;
 }
 body{
-    background-image: url('/static/imagens/whatsapp.jpg');
+    background-image: url('/static/image/whatsapp.jpg');
     height: 100vh;
     width: 100vw;
     background-size: cover;

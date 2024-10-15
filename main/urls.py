@@ -16,6 +16,6 @@ urlpatterns = [
     path('chat', views.lista_chat, name='lista_chat'),
     path('mensagens/<int:id_cliente>', views.mensagens, name='mensagens'),
     path('teste', views.teste, name='teste'),
-    
+    path('fundo_chat', views.fundo_chat, name='fundo_chat')
 
 ]

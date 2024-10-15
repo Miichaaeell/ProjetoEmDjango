@@ -134,3 +134,7 @@ def mensagens(request, id_cliente):
 
 def teste(request):
     return render(request, 'teste.html')
+
+@xframe_options_exempt
+def fundo_chat(request):
+    return render(request, 'fundo_chat.html')
