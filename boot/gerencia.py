@@ -5,7 +5,6 @@ from .models import Cliente, Mensagem
 
 def filtrar_dados(dados):
     novo = False
-    fluxo = ''
     cliente = {}
     cliente['nome'] = dados['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name']
     cliente['telefone'] = dados['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
@@ -17,7 +16,11 @@ def filtrar_dados(dados):
         novo = True
         fluxo = 'inicial'
     else:
-        fluxo = clientes.fluxo
+        if cliente['msg'] == ['atendimento', 'atendente']:
+            clientes.fluxo = 'atendimento'
+        else:
+            fluxo = clientes.fluxo
+    # nova Query pois pode ter sido salvo um novo cliente
     user = Cliente.objects.filter(telefone=cliente['telefone']).first()
     if user.fluxo == 'atendimento':
         msg = Mensagem(cliente=user, mensagem=cliente['msg'], remetente='cliente', nome=user.nome, notificacao=True)

@@ -6,6 +6,7 @@ from boot.gerencia import enviar_resposta
 from boot.models import Cliente, Mensagem
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib import messages
+from boot.gerencia import reply
 
 # Create your views here.
 def login_user(request):
@@ -132,9 +133,17 @@ def mensagens(request, id_cliente):
     mensagens = Mensagem.objects.filter(cliente = id_cliente).all()
     return render(request, 'mensagens.html', {'mensagens': mensagens})
 
-def teste(request):
-    return render(request, 'teste.html')
-
 @xframe_options_exempt
 def fundo_chat(request):
+    if request.method == 'POST':
+        user = request.user
+        id_cliente = request.POST['id_cliente']
+        client = Cliente.objects.filter(id=id_cliente).first()
+        client.fluxo = 'inicial'
+        client.save()
+        msg = f'{client.nome} Atendimento encerrado, agradeçemos o contato, caso necessário estaremos a disposição'
+        enviar_resposta(msg=msg, telefone=client.telefone, remetente=user)    
     return render(request, 'fundo_chat.html')
+
+def teste(request):
+    return render(request, 'teste.html')

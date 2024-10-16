@@ -50,3 +50,8 @@ iframe{
     border: none;
     height: 100%;
 }
+#encerrar_atendimento{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}

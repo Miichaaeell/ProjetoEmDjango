@@ -14,7 +14,11 @@
             <h1 hidden id="id_client">{{cliente.id}}</h1>
             <h4>{{cliente.telefone}}</h4>
             <h2>{{cliente.nome}}</h2>
-            <h2><a href="/fundo_chat" target="conversa"><i class="bi bi-archive" id="encerrar"></i></a></h2>
+            <form action="{% url 'fundo_chat' %}" method="post">
+                <input type="text" name="id_cliente" value="{{cliente.id}}" hidden>
+                {% csrf_token %}
+                <button type='submit' id='encerrar_atendimento'><i class="bi bi-archive" id="encerrar"></i></button>
+            </form>
         </div>
         <iframe src="/mensagens/{{cliente.id}}"></iframe>
         <form action="#" method="post" id="form"> {% csrf_token %}
