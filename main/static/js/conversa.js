@@ -12,7 +12,6 @@ chatSocket.onmessage = (event) => {
 
 form.addEventListener('submit', (event)=>{
     let message = event.target.mensagem.value
-    console.log(message)
     chatSocket.send(JSON.stringify({
         'type':'reply_message',
         'message':message,
@@ -22,8 +21,8 @@ form.addEventListener('submit', (event)=>{
 
 form_end_atendimento.addEventListener('submit', (event) => {
     chatSocket.send(JSON.stringify({
-        'type':'end_atendiment',
+        'type':'reply_message',
         'message':'end',
-        'id':id_client
+        'id': id_client
     }))
 })

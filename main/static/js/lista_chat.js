@@ -13,15 +13,20 @@ chatSocket.onmessage = (event) => {
 
     }
     else if (data.type === 'reply_message'){
-        let msg = document.getElementById(`mensagem_${data.id}`)
-        msg.innerHTML = data.message
-        let conversa = document.getElementById(`${data.id}`)
-        conversa.style.backgroundImage = 'none'
+        var msg = document.getElementById(`mensagem_${data.id}`)
+        var conversa = document.getElementById(`${data.id}`)
+        if (data.message !='end'){
+            msg.innerHTML = data.message
+            conversa.style.backgroundImage = 'none'
+        }
+        else {
+            conversa.remove()
+        }
     }
 
     else if (data.type === 'end_atendiment'){
-        let conversa = document.getElementById(`${data.id}`)
-        conversa.remove()
+        const conversa = document.getElementById(`${data.id}`)
+        
     }
     
 }
