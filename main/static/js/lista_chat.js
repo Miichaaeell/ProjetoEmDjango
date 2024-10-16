@@ -18,6 +18,11 @@ chatSocket.onmessage = (event) => {
         let conversa = document.getElementById(`${data.id}`)
         conversa.style.backgroundImage = 'none'
     }
+
+    else if (data.type === 'end_atendiment'){
+        let conversa = document.getElementById(`${data.id}`)
+        conversa.remove()
+    }
     
 }
 function abrir(id){

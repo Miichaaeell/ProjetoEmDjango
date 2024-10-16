@@ -18,7 +18,10 @@ body{
 }
 #titulo{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 99%;
+    margin: auto;
+    margin-top: 3px;
     align-items: center;
     background-color: white;
     border-radius: 10px;
@@ -54,4 +57,9 @@ iframe{
     cursor: pointer;
     width: 30px;
     height: 30px;
+    margin-right: 20px;
+    padding: 4px;
+}
+#telefone {
+    margin-left: 20px;
 }

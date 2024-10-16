@@ -12,12 +12,12 @@
     <div id="conversa">
         <div id="titulo">
             <h1 hidden id="id_client">{{cliente.id}}</h1>
-            <h4>{{cliente.telefone}}</h4>
+            <h4 id="telefone">{{cliente.telefone}}</h4>
             <h2>{{cliente.nome}}</h2>
-            <form action="{% url 'fundo_chat' %}" method="post">
+            <form action="{% url 'fundo_chat' %}" method="post" id="form_end_atendimento">
                 <input type="text" name="id_cliente" value="{{cliente.id}}" hidden>
                 {% csrf_token %}
-                <button type='submit' id='encerrar_atendimento'><i class="bi bi-archive" id="encerrar"></i></button>
+                <abbr title="Encerrar Atendimento"><button type='submit' id='encerrar_atendimento'><i class="bi bi-archive" id="encerrar"></i></button></abbr>
             </form>
         </div>
         <iframe src="/mensagens/{{cliente.id}}"></iframe>

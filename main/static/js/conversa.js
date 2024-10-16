@@ -1,6 +1,7 @@
 const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat-socket/`)
 const form = document.getElementById('form')
-var id_client = document.getElementById('id_client').textContent
+const form_end_atendimento = document.getElementById('form_end_atendimento')
+const id_client = document.getElementById('id_client').textContent
 chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
     console.log(data)
@@ -16,5 +17,13 @@ form.addEventListener('submit', (event)=>{
         'type':'reply_message',
         'message':message,
         'id': id_client
+    }))
+})
+
+form_end_atendimento.addEventListener('submit', (event) => {
+    chatSocket.send(JSON.stringify({
+        'type':'end_atendiment',
+        'message':'end',
+        'id':id_client
     }))
 })
