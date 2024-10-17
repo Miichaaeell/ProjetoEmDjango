@@ -1,6 +1,5 @@
 from django.db import models
 from django.db.models.signals import post_save
-from winotify import Notification, audio
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import json
@@ -42,10 +41,6 @@ class Mensagem(models.Model):
 
 def Notificar(sender, instance, created, **kwargs):
     if instance.remetente == 'cliente' and instance.notificacao == True:
-        notificacao = Notification(app_id="Projeto django", title=f"{instance.nome}", msg=instance, icon=r'C://Users/Michael Andrew/PycharmProjects/ProjetoEmDjango/main/static/imagens/favicon.ico')
-        notificacao.set_audio(audio.LoopingAlarm10, loop=True)
-        notificacao.add_actions(label='Responder', launch='http://127.0.0.1:8000/inicio')
-        notificacao.show()
         client = Cliente.objects.filter(id=instance.cliente.id).first()
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
