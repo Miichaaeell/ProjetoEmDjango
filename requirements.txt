@@ -13,10 +13,13 @@ Django==5.1.1
 django-appconf==1.0.6
 django-model-utils==5.0.0
 django-user-accounts==3.3.2
+gunicorn==23.0.0
 hyperlink==21.0.0
 idna==3.10
 incremental==24.7.2
 jsonfield==3.1.0
+packaging==24.1
+psycopg2==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pycparser==2.22
