@@ -38,18 +38,18 @@ def cadastro(request):
         password = request.POST['password']
         email = request.POST['email']
         previlegio = request.POST['previlegio']
-        users_exist = User.objects.get(username=username)
-        if users_exist:
-            return render(request, 'cadastro.html', {'erro': 'Usuário já cadastrado'})
-        else:
+        try:
+            users_exist = User.objects.get(username=username)
+        except:
             user = User.objects.create_user(username, email, password)
             user.first_name = nome
             if previlegio == 'Administrador':
                 user.is_staff = True
             user.save()
             return redirect('inicio')
-    else:
-        return render(request, 'cadastro.html')
+        if users_exist:
+            return render(request, 'cadastro.html', {'erro': 'Usuário já cadastrado'})
+    return render(request, 'cadastro.html')
 
 @login_required(login_url='login')
 def listar_usuario(request):
