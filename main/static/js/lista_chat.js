@@ -1,4 +1,4 @@
-const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat-socket/`)
+const chatSocket = new WebSocket(`wss://${window.location.host}/ws/chat-socket/`)
 Notification.requestPermission()
 chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
