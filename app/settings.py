@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'usuarios_q1cr',
         'USER':environ.get('DB_USER'),
         'PASSWORD':environ.get('DB_PASSWORD'),
-        'HOST':environ.get('DB_HOST'),
+        'HOST':environ.get('BD_HOST_INTERNO'),
         'PORT':environ.get('DB_PORT'),
     }
 }
