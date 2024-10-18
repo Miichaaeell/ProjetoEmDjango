@@ -18,6 +18,7 @@ def filtrar_dados(dados):
     else:
         if cliente['msg'] == ['atendimento', 'atendente']:
             clientes.fluxo = 'atendimento'
+            clientes.save()
         else:
             fluxo = clientes.fluxo
     # nova Query pois pode ter sido salvo um novo cliente
