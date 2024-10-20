@@ -22,9 +22,9 @@ application = ProtocolTypeRouter({
     'websocket':AllowedHostsOriginValidator(
                     AuthMiddlewareStack(
                         URLRouter(
-                            path('', NotificationConsumer.as_asgi()),
-                            path('chat', NotificationConsumer.as_asgi()),
-                            path('conversa/<int:id_cliente>', NotificationConsumer.as_asgi()),
+                            path('/', NotificationConsumer.as_asgi()),
+                            path('chat/', NotificationConsumer.as_asgi()),
+                            path('conversa/<int:id_cliente>/', NotificationConsumer.as_asgi()),
                         )  
                 )
             )
