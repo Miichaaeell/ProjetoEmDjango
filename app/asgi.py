@@ -12,7 +12,8 @@ from django.core.asgi import get_asgi_application
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-import boot.routing
+from boot.consumers import NotificationConsumer
+from django.urls import path
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
@@ -20,7 +21,11 @@ application = ProtocolTypeRouter({
     'http':get_asgi_application(),
     'websocket':AllowedHostsOriginValidator(
                     AuthMiddlewareStack(
-                        URLRouter(boot.routing.websocket_urlpatterns)  
+                        URLRouter(
+                            path('', NotificationConsumer.as_asgi()),
+                            path('chat', NotificationConsumer.as_asgi()),
+                            path('conversa/<int:id_cliente>', NotificationConsumer.as_asgi()),
+                        )  
                 )
             )
         }

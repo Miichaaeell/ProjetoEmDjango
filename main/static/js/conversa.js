@@ -1,4 +1,4 @@
-const chatSocket = new WebSocket(`wss://${window.location.host}/ws/chat-socket/`)
+const chatSocket = new WebSocket(`wss://${window.location.host}`)
 const form = document.getElementById('form')
 const form_end_atendimento = document.getElementById('form_end_atendimento')
 const id_client = document.getElementById('id_client').textContent
