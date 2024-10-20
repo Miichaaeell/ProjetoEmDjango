@@ -27,14 +27,14 @@
         <p>
             <input type="submit" value="Logar">
         </p>
-    
+        {% if messages %}
+        {% for mensagem in messages %}
+        <strong>{{ mensagem }}</strong>
+        {% endfor%}
+        {% endif %}
     
     </form>
-    {% if messages %}
-    {% for mensagem in messages %}
-    <strong>{{ mensagem }}</strong>
-    {% endfor%}
-    {% endif %}
+    
 
     <script src="{% static 'js/login.js' %}"></script>
 </body>

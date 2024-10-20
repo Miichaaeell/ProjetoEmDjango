@@ -15,15 +15,17 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user:
-            messages.success(request, "loggin Succes!")
             login(request, user)
             return redirect('inicio')
+        else:
+            return render(request, 'login.html', {'erro':'Usuário ou Senha Incorretos'})
 
     return render(request, 'login.html')
 
 @login_required(login_url='login')
 def logout_user(request):
      logout(request)
+     messages.success(request, "logged Success!")
      return redirect('login')
 
 @login_required(login_url='login')
