@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -92,10 +92,10 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'usuarios_q1cr',
+        'NAME': environ.get('DB_NAME'),
         'USER':environ.get('DB_USER'),
         'PASSWORD':environ.get('DB_PASSWORD'),
-        'HOST':environ.get('DB_HOST_INTERNO'),
+        'HOST':environ.get('DB_HOST'),
         'PORT':environ.get('DB_PORT'),
     }
 }
