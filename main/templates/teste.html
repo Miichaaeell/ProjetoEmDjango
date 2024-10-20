@@ -22,7 +22,6 @@ const form = document.getElementById('form')
 chatSocket.onmessage = (e) => {
     let data = JSON.parse(e.data)
     if (data.type === 'new_message'){
-        console.log('message', data.message)
         let msg = document.createElement('output')
         msg.innerHTML = `${data.message.body} <br>`
         chat.appendChild(msg)

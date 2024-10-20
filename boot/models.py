@@ -44,7 +44,7 @@ def Notificar(sender, instance, created, **kwargs):
         client = Cliente.objects.filter(id=instance.cliente.id).first()
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            'Atendimento',
+            'chat',
             {
                 "type": "new_message",
                 "message": {
