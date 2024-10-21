@@ -2,7 +2,6 @@ const chatSocket = new WebSocket(`wss://${window.location.host}/ws/chat-socket/`
 Notification.requestPermission()
 chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
-    console.log(data)
     if (data.type === 'new_message'){
         let conversa = document.getElementById(`${data.id}`)
         conversa.style.backgroundImage = "linear-gradient(to right, red, orange)"
@@ -24,10 +23,6 @@ chatSocket.onmessage = (event) => {
         }
     }
 
-    else if (data.type === 'end_atendiment'){
-        const conversa = document.getElementById(`${data.id}`)
-        
-    }
     
 }
 function abrir(id){

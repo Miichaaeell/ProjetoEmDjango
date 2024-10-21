@@ -6,7 +6,9 @@ const img = '../image/whats_ico.ico'
 chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
     console.log(data)
+    console.log('ws base')
     if (data.type === 'new_message'){
+        console.log('função notificar')
         notify(title=`${data.text.message.name} new message`, body=data.text.message.body)
     }
 }
@@ -14,7 +16,6 @@ function clicou(){
     alert('clicou')
     const sound = new Audio('../media/sound/notification.mp3')
     sound.play()
-   
 }
 function notify(title, body){
     new Notification(title,{
