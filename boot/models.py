@@ -47,9 +47,10 @@ def Notificar(sender, instance, created, **kwargs):
             'chat',
             {
                 "type": "new_message",
-                "message": {
+                "text": {"message": {
                     'body':instance.mensagem,
-                    'name': client.nome},
+                    'name': client.nome}
+                    },
                 "id": instance.cliente.id
 
             }

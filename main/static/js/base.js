@@ -7,7 +7,7 @@ chatSocket.onmessage = (event) => {
     let data = JSON.parse(event.data)
     console.log(data)
     if (data.type === 'new_message'){
-        notify(title=`${data.message.name} new message`, body=data.message.body)
+        notify(title=`${data.text.message.name} new message`, body=data.text.message.body)
     }
 }
 function clicou(){
