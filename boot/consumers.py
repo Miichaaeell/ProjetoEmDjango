@@ -1,8 +1,10 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
+from channels.auth import login
 import json
 
 class NotificationConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        await login(self.scope, self.scope['user'])
         self.group_name="chat"
         await self.channel_layer.group_add(self.group_name, self.channel_name)
         await self.accept()
