@@ -49,10 +49,9 @@ def Notificar(sender, instance, created, **kwargs):
                 "type": "new_message",
                 "text": {"message": {
                     'body':instance.mensagem,
-                    'name': client.nome}
-                    },
+                    'name': client.nome},
                 "id": instance.cliente.id
-
+                }
             }
         )
         
